@@ -362,7 +362,7 @@ def send_message_to_all(message_text):
 
 
 # Schedule the daily message at 7:00 AM
-schedule.every().day.at("13:00").do(send_daily_message)
+schedule.every().day.at("21:00").do(send_daily_message)
 
 # Function to keep the bot running
 def run_bot():
