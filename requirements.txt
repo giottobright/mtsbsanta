@@ -1,6 +1,4 @@
 telebot
-sqlite3
-random
 datetime
 schedule
 logging
