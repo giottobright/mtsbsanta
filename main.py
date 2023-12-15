@@ -5,11 +5,14 @@ import datetime
 import schedule
 import time
 import os
+import logging
 from telebot import types
 
 
 
 bot = telebot.TeleBot("6094614699:AAHjGXIA7eo7JpA-Tv7iBeRfX_vKY-2O7Z0")
+
+logging.basicConfig(level=logging.INFO)
 
 db = sqlite3.connect("users.db", check_same_thread=False)
 sql = db.cursor()
@@ -65,6 +68,7 @@ def save_user(user_id, username, fio, wish):
     with sqlite3.connect("users.db") as conn:
         cursor = conn.cursor()
         cursor.execute("INSERT INTO users (user_id, username, fio, wish) VALUES (?, ?, ?, ?)", (user_id, username, fio, wish))
+        logging.info(f"User {user_id} saved to the database.")
         conn.commit()
 
 
