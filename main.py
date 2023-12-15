@@ -4,9 +4,8 @@ import random
 import datetime
 import schedule
 import time
-import logging
 import os
-from telebot import types # для указание типов
+from telebot import types
 
 
 
@@ -359,7 +358,6 @@ def send_message_to_all(message_text):
 # Schedule the daily message at 7:00 AM
 schedule.every().day.at("13:00").do(send_daily_message)
 
-logging.basicConfig(level=logging.DEBUG)
 # Function to keep the bot running
 def run_bot():
     while True:
