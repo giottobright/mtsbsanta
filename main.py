@@ -213,7 +213,7 @@ def send_daily_message():
     today = datetime.datetime.now().date()
 
     # Check if it's the specific date to send a message
-    if today == datetime.datetime(2023, 12, 17).date():
+    if today == datetime.datetime(2023, 12, 15).date():
         # Send "Привет" on December 16th
         send_message_to_all("""
 🎊✨ Новогоднее предложение от нашего онлайн-банка! 🎉🌟
@@ -362,7 +362,7 @@ def send_message_to_all(message_text):
 
 
 # Schedule the daily message at 7:00 AM
-schedule.every().day.at("21:00").do(send_daily_message)
+schedule.every().day.at("21:01").do(send_daily_message)
 
 # Function to keep the bot running
 def run_bot():
