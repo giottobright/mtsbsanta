@@ -14,7 +14,7 @@ bot = telebot.TeleBot("6094614699:AAHjGXIA7eo7JpA-Tv7iBeRfX_vKY-2O7Z0")
 
 logging.basicConfig(level=logging.INFO)
 
-db = connectsqlite3.connect("users.db", check_same_thread=False)
+db = sqlite3.connect("users.db", check_same_thread=False)
 sql = db.cursor()
 sql.execute("""CREATE TABLE IF NOT EXISTS users (
              user_id INTEGER,
