@@ -13,14 +13,15 @@ import psycopg2
 
 bot = telebot.TeleBot("6094614699:AAHjGXIA7eo7JpA-Tv7iBeRfX_vKY-2O7Z0")
 
-host = "monorail.proxy.rlwy.net"
-database = "railway"
-user = "postgres"
-password = "Dc4FAfb4ABCF*AbB*6F35ga-d4GE52Eg"
+db_name = "railway"
+db_host = "monorail.proxy.rlwy.net"
+db_user = "postgres"
+db_pass = "Dc4FAfb4ABCF*AbB*6F35ga-d4GE52Eg"
+db_port = "24563"
 
 logging.basicConfig(level=logging.INFO)
 
-db = psycopg2.connect(host=host, database=database, user=user, password=password)
+db = psycopg2.connect(bname="db_name", host="db_host", user="db_user", password="db_pass", port="db_port")
 sql = db.cursor()
 sql.execute("""CREATE TABLE IF NOT EXISTS users (
              user_id INTEGER,
