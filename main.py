@@ -408,7 +408,6 @@ def send_message_to_all(message_text):
         cursor = conn.cursor()
         cursor.execute("SELECT user_id FROM users")
         user_ids = [row[0] for row in cursor.fetchall()]
-        print(user_ids)
 
     for user_id in user_ids:
         send_message(user_id, message_text)
