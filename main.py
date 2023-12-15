@@ -7,14 +7,20 @@ import time
 import os
 import logging
 from telebot import types
+import psycopg2
 
 
 
 bot = telebot.TeleBot("6094614699:AAHjGXIA7eo7JpA-Tv7iBeRfX_vKY-2O7Z0")
 
+host = "monorail.proxy.rlwy.net"
+database = "railway"
+user = "postgres"
+password = "Dc4FAfb4ABCF*AbB*6F35ga-d4GE52Eg"
+
 logging.basicConfig(level=logging.INFO)
 
-db = sqlite3.connect("users.db", check_same_thread=False)
+db = psycopg2.connect(host=host, database=database, user=user, password=password)
 sql = db.cursor()
 sql.execute("""CREATE TABLE IF NOT EXISTS users (
              user_id INTEGER,
