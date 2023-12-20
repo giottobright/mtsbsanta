@@ -396,7 +396,7 @@ def eight(message):
     """)
 
 @bot.message_handler(commands=["admin"])
-def eight(message):
+def admin(message):
     admin_id = 5200228179  # user_id админа
 
     if message.from_user.id != admin_id:
