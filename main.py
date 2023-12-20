@@ -395,29 +395,6 @@ def eight(message):
     Так что, **дорогие аналитики**, примите наши благодарности за ваше волшебство и работу, которая помогла нам сделать правильные решения и достичь успеха во всем нашем бизнесе! 🌟🔮 Желаем вам счастливых праздников, море волшебства и продолжайте раскрывать тайны данных и аналитики в новом году! Это будет настоящее волшебство! ✨😄
     """)
 
-@bot.message_handler(commands=["admin"])
-def admin(message):
-    admin_id = 5200228179  # user_id админа
-
-    if message.from_user.id != admin_id:
-        bot.send_message(message.chat.id, "Ты не админ)")
-        return
-    with sqlite3.connect("users.db") as conn:
-        cursor = conn.cursor()
-        cursor.execute("SELECT user_id FROM users")
-        user_ids = [row[0] for row in cursor.fetchall()]
-
-    for user_id in user_ids:
-        try:
-          bot.send_message(message.chat.id, user_id)
-          print('Ну что')
-        except Exception as e:
-          print(f"Error in polling: {e} {user_id}")
-        time.sleep(1)
-
-        
-    
-
 
 @bot.message_handler(func=lambda message: message.text == "Фото")
 def random_photo(message):
@@ -433,10 +410,7 @@ def send_message_to_all(message_text):
         user_ids = [row[0] for row in cursor.fetchall()]
 
     for user_id in user_ids:
-        try:
-          send_message(user_id, message_text)
-        except Exception as e:
-          print(f"Error in polling: {e} {user_id}")
+        send_message(user_id, message_text)
         time.sleep(1)
         print(user_id)
 
