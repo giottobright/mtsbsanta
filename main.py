@@ -396,7 +396,7 @@ def eight(message):
     """)
 
 @bot.message_handler(commands=["admin"])
-def admin():
+def admin(message):
     admin_id = 5200228179  # user_id админа
 
     if message.from_user.id != admin_id:
@@ -406,14 +406,15 @@ def admin():
         cursor = conn.cursor()
         cursor.execute("SELECT user_id FROM users")
         user_ids = [row[0] for row in cursor.fetchall()]
-      
 
     for user_id in user_ids:
         try:
-          send_message(admin_id, user_id)
+          bot.send_message(message.chat.id, user_id)
+          print('Ну что')
         except Exception as e:
           print(f"Error in polling: {e} {user_id}")
         time.sleep(1)
+
         
     
 
