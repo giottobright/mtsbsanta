@@ -419,6 +419,43 @@ def send_message_to_all(message_text):
         time.sleep(1)
         print(user_id)
 
+user_ids = [6679534024, 5200228179, 356591982, 234255739, 184745533, 568244869, 1773538768, 500250334, 170119259, 1003766557, 917446964, 1103363577, 52231723, 464225334, 6562462768, 255125686, 742369179, 873869517, 667276461, 452112435, 42786538, 999101706, 274030458, 527085993, 215826853, 1507820402, 341702869, 203187563, 83670786, 279410694, 6679534024, 892600188]  # список id пользователей
+question = "Привет, Друг!🌟 MVP бота не получил твоего пожелания к подарку (баги она такие, надеюсь ты простишь меня)( Напиши, пожалуйста, еще раз что бы ты хотел получить от Тайного Санты и завтра в 14:00 я отправлю тебе того, кому предстоит отправить подарок)"
+
+
+responses = {}
+
+
+# Обработчик команды /nine
+@bot.message_handler(commands=['nine'])
+def cmd_nine(message):
+    send_question_to_all_users()
+
+
+# Функция рассылки вопроса
+def send_question_to_all_users():
+    for user_id in user_ids:
+        try:
+            user = bot.get_chat(user_id)
+            username = user.username
+
+            msg = bot.send_message(user_id, question)
+            logging.info(f"Пользователь {username} ({user_id}) плдучил вопрос")
+            time.sleep(1)
+            bot.register_next_step_handler(msg, process_response)
+        except Exception as e:
+            logging.error(f"Ошибка при отправке сообщения пользователю {user_id}: {e}")
+
+
+# Обработчик ответов
+def process_response(message):
+    user_id = message.from_user.id
+    username = message.from_user.username
+    response = message.text
+
+    logging.info(f"Пользователь {username} ({user_id}) ответил: {response}")
+
+    responses[user_id] = {'username': username, 'response': response}
 
 
 # Function to keep the bot running
