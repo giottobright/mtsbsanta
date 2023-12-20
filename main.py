@@ -410,7 +410,10 @@ def send_message_to_all(message_text):
         user_ids = [row[0] for row in cursor.fetchall()]
 
     for user_id in user_ids:
-        send_message(user_id, message_text)
+        try:
+          send_message(user_id, message_text)
+        except Exception as e:
+          print(f"Error in polling: {e} {user_id}")
         time.sleep(1)
         print(user_id)
 
