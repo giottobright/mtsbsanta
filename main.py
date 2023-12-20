@@ -402,14 +402,22 @@ def eight(message):
     if message.from_user.id != admin_id:
         bot.send_message(message.chat.id, "Ты не админ)")
         return
+    users = []
     with sqlite3.connect("users.db") as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT user_id FROM users")
-        user_ids = [row[0] for row in cursor.fetchall()]  
-        user2 = [row[1] for row in cursor.fetchall()]    
-        user3 = [row[2] for row in cursor.fetchall()]  
-        user4 = [row[4] for row in cursor.fetchall()] 
-    print(user_ids, user2, user3, user4)
+        cursor.execute("SELECT * FROM users")
+        conn.commit()
+        for row in cursor:
+            users.append({
+                "user_id": row[0],
+                "username": row[1],
+                "fio": row[2],
+                "wish": row[3]
+            })
+    print(users)
+    bot.send_message(message.chat.id, "Лови в терминале)")
+    
+        
     
 
 
