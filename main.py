@@ -396,26 +396,24 @@ def eight(message):
     """)
 
 @bot.message_handler(commands=["admin"])
-def admin(message):
+def admin():
     admin_id = 5200228179  # user_id админа
 
     if message.from_user.id != admin_id:
         bot.send_message(message.chat.id, "Ты не админ)")
         return
-    users = []
     with sqlite3.connect("users.db") as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM users")
-        conn.commit()
-    for row in cursor:
-        users.append({
-            "user_id": row[0],
-            "username": row[1],
-            "fio": row[2],
-            "wish": row[3]
-        })
-    print("okay {users}")
-    bot.send_message(message.chat.id, users)
+        cursor.execute("SELECT user_id FROM users")
+        user_ids = [row[0] for row in cursor.fetchall()]
+      
+
+    for user_id in user_ids:
+        try:
+          send_message(admin_id, user_id)
+        except Exception as e:
+          print(f"Error in polling: {e} {user_id}")
+        time.sleep(1)
         
     
 
