@@ -407,16 +407,15 @@ def admin(message):
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM users")
         conn.commit()
-        for row in cursor:
-            users.append({
-                "user_id": row[0],
-                "username": row[1],
-                "fio": row[2],
-                "wish": row[3]
-            })
+    for row in cursor:
+        users.append({
+            "user_id": row[0],
+            "username": row[1],
+            "fio": row[2],
+            "wish": row[3]
+        })
     print("okay {users}")
     bot.send_message(message.chat.id, users)
-    
         
     
 
