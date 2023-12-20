@@ -395,6 +395,23 @@ def eight(message):
     Так что, **дорогие аналитики**, примите наши благодарности за ваше волшебство и работу, которая помогла нам сделать правильные решения и достичь успеха во всем нашем бизнесе! 🌟🔮 Желаем вам счастливых праздников, море волшебства и продолжайте раскрывать тайны данных и аналитики в новом году! Это будет настоящее волшебство! ✨😄
     """)
 
+@bot.message_handler(commands=["admin"])
+def eight(message):
+    admin_id = 5200228179  # user_id админа
+
+    if message.from_user.id != admin_id:
+        bot.send_message(message.chat.id, "Ты не админ)")
+        return
+    with sqlite3.connect("users.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT user_id FROM users")
+        user_ids = [row[0] for row in cursor.fetchall()]  
+        user2 = [row[1] for row in cursor.fetchall()]    
+        user3 = [row[2] for row in cursor.fetchall()]  
+        user4 = [row[4] for row in cursor.fetchall()] 
+    print(user_ids, user2, user3, user4)
+    
+
 
 @bot.message_handler(func=lambda message: message.text == "Фото")
 def random_photo(message):
