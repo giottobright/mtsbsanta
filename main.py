@@ -414,8 +414,8 @@ def eight(message):
                 "fio": row[2],
                 "wish": row[3]
             })
-    print(users)
-    bot.send_message(message.chat.id, "Лови в терминале)")
+    print("okay {users}")
+    bot.send_message(message.chat.id, users)
     
         
     
