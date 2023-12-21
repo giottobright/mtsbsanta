@@ -8,7 +8,7 @@ import os
 import logging
 from telebot import types
 
-bot = telebot.TeleBot("6094614699:AAG5HD6d5QtAvI7GuHHI6Vt8pO7No39HjGU")
+bot = telebot.TeleBot("6094614699:AAFH7v5B7UXSjlW6fiNBf7-YJLhR4XzQYoc")
 
 logging.basicConfig(level=logging.INFO)
 
