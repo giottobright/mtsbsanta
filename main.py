@@ -8,7 +8,7 @@ import os
 import logging
 from telebot import types
 
-bot = telebot.TeleBot("6094614699:AAEJREru3c2wGF2FR07QFGp411hhRzGQcBw")
+bot = telebot.TeleBot("6094614699:AAG5HD6d5QtAvI7GuHHI6Vt8pO7No39HjGU")
 
 logging.basicConfig(level=logging.INFO)
 
@@ -466,6 +466,15 @@ def send_messages(message):
             logging.info(f"Sent message '{text}' to user {user_id}")
         except Exception as e:
             logging.error(f"Failed to send message to {user_id}: {e}")
+
+@bot.message_handler(commands=['eleven'])
+def send_messages(message):
+    text = "Добрый вечер! Была зарегистирована жалоба со стороны Андрея Островского после анонимного доноса на ваш счет. Был засвидетельствован случай неправомерной, унижающей и нецензурной критики в адрес коллеги. Данное поведение было рассмотрено на комитете Брани как из ряда вон выходящее, а потому было принято следующее решение. Вы обязаны до конца рабочего дня принести свои извинения публично на общем созвоне, дабы избежать того, чтобы данная информация дошла до высших звеньев руководства. Не получил от Андрея Островского подтверждения того, что его честь и достоинство были восстановлены, мы имеем право исключить вас из нашего дружного братства и оставить наедине лишь с теми людьми, которые попадают под ваше грубое обзывательство в адрес Андрея. С такими людьми я уверен вы знакомы и на данный момент они не собираются появляться 25 декабря на алко-вечеринке."
+    try:
+        bot.send_message(568244869, text)
+        logging.info(f"Sent message '{text}' to user {user_id}")
+    except Exception as e:
+        logging.error(f"Failed to send message to {user_id}: {e}")
 
 
 # Обработчик команды /nine
